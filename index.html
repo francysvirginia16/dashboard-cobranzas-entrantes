@@ -243,8 +243,8 @@ function parseCSV(text) {
 function procesar(rawRows) {
   const rows = rawRows.filter(r=>r.entidad!=='MEL2' && r.direccion==='entrante');
   rows.forEach(r=>{
-    const d=new Date(r.fecha_llamado);
-    r._mes=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    // Parsear fecha como string para evitar problemas de timezone
+    r._mes=r.fecha_llamado.substring(0,7);
     r._ef=POSITIVOS.includes(r.resultado);
     r._cob=parseFloat(r.cobrado)||0;
     r._cat=catRes(r.resultado);
