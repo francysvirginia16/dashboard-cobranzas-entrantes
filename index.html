@@ -343,10 +343,11 @@ function render(d) {
     }).join('');
   }
   function buildDrillTabs(){
-    document.getElementById('monthTabs').innerHTML=MESES.map(m=>
-      '<button class="mtab'+(m===actMes?' active':'')+'" onclick="setMes(this.dataset.m)" data-m="'+m+'">'+ML[m]+'</button>').join('');
+    document.getElementById('monthTabs').innerHTML=MESES.map((m,i)=>
+      '<button class="mtab'+(m===actMes?' active':'')+'" onclick="window._setMes('+i+')">'+ ML[m]+'</button>').join('');
   }
-  window.setMes=function(m){actMes=m;buildDrillTabs();renderDrill(m);};
+  window._setMes=function(i){actMes=MESES[i];buildDrillTabs();renderDrill(actMes);};
+  window.setMes=window._setMes;
   buildDrillTabs(); renderDrill(actMes);
 
   let actRes=MESES[0];
@@ -371,10 +372,11 @@ function render(d) {
     document.getElementById('resTablaContent').innerHTML=html;
   }
   function buildResTabs(){
-    document.getElementById('resMesTabs').innerHTML=MESES.map(m=>
-      '<button class="mtab'+(m===actRes?' active':'')+'" onclick="setRes(this.dataset.m)" data-m="'+m+'">'+ML[m]+'</button>').join('');
+    document.getElementById('resMesTabs').innerHTML=MESES.map((m,i)=>
+      '<button class="mtab'+(m===actRes?' active':'')+'" onclick="window._setRes('+i+')">'+ ML[m]+'</button>').join('');
   }
-  window.setRes=function(m){actRes=m;buildResTabs();renderRes(m);};
+  window._setRes=function(i){actRes=MESES[i];buildResTabs();renderRes(actRes);};
+  window.setRes=window._setRes;
   buildResTabs(); renderRes(actRes);
 
   const allEnts=[...new Set(MESES.flatMap(m=>DATA[m].map(r=>r.e)))].sort();
