@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Llamadas Entrantes — Análisis de Efectividad </title>
+<title>Llamadas Entrantes — Análisis de Efectividad</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -344,7 +344,7 @@ function render(d) {
   }
   function buildDrillTabs(){
     document.getElementById('monthTabs').innerHTML=MESES.map(m=>
-      '<button class="mtab'+(m===actMes?' active':'')+'" onclick="setMes(this.getAttribute(\"data-m\"))" data-m="'+m+'">'+ML[m]+'</button>').join('');
+      '<button class="mtab'+(m===actMes?' active':'')+'" onclick="setMes(this.dataset.m)" data-m="'+m+'">'+ML[m]+'</button>').join('');
   }
   window.setMes=function(m){actMes=m;buildDrillTabs();renderDrill(m);};
   buildDrillTabs(); renderDrill(actMes);
@@ -372,7 +372,7 @@ function render(d) {
   }
   function buildResTabs(){
     document.getElementById('resMesTabs').innerHTML=MESES.map(m=>
-      '<button class="mtab'+(m===actRes?' active':'')+'" onclick="setRes(this.getAttribute(\"data-m\"))" data-m="'+m+'">'+ML[m]+'</button>').join('');
+      '<button class="mtab'+(m===actRes?' active':'')+'" onclick="setRes(this.dataset.m)" data-m="'+m+'">'+ML[m]+'</button>').join('');
   }
   window.setRes=function(m){actRes=m;buildResTabs();renderRes(m);};
   buildResTabs(); renderRes(actRes);
